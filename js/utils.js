@@ -5,6 +5,34 @@ function isEmptyObject(obj) {
   };
   return true
 };
+//js获取表单数据
+function formser(form){
+  var form=document.getElementById(form);
+ 	var arr={};
+ 	for (var i = 0; i < form.elements.length; i++) {
+ 		var feled=form.elements[i];
+ 		switch(feled.type) {
+ 			case undefined:
+		 	case 'button':
+		 	case 'file':
+		 	case 'reset':
+		 	case 'submit':
+ 				break;
+ 			case 'checkbox':
+ 			case 'radio':
+ 				if (!feled.checked) {
+ 					break;
+ 				}
+ 			default:
+ 				if (arr[feled.name]) {
+ 					arr[feled.name]=arr[feled.name]+','+feled.value;
+ 				}else{
+ 					arr[feled.name]=feled.value;
+ 				} 
+ 			}
+ 		}
+ 	return arr
+};
 // 可以将表单中的文本框 下拉框 根据name 属性 序列化成字符串
 function serializeObject(){    
   var o = {};    
@@ -63,3 +91,46 @@ function stopBubble(e){
 function randombetween(min, max){
 	return min + (Math.random() * (max-min +1));
 }
+function isPC(){
+	if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+    return false;
+	} else {
+	  return true;
+	}
+}
+//获取屏幕可视区域的宽高
+!function() {
+  if(window.innerHeight !== undefined) {
+    client = function() {
+    	return {
+        "width": window.innerWidth,
+       	"height": window.innerHeight
+        }
+    }
+  }else if(document.compatMode === "CSS1Compat") {
+ 		client = function() {
+     	return {
+        "width": document.documentElement.clientWidth,
+        "height": document.documentElement.clientHeight
+      }
+    }
+	} else {
+    client = function() {
+      return {
+        "width": document.body.clientWidth,
+        "height": document.body.clientHeight
+      }
+     }
+	}
+}();
+
+//绑定事件
+var addHandler = function(element, type, handler){  
+	if (element.addEventListener){  
+	    element.addEventListener(type, handler, false);  
+	} else if (element.attachEvent){  
+	    element.attachEvent("on" + type, handler);  
+	} else {  
+	    element["on" + type] = handler;  
+	}  
+}  

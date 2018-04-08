@@ -2,14 +2,42 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<meta name="apple-mobile-web-app-capable" content="yes"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
 		<link rel="stylesheet" href="css/style.css" />
+		<style>
+			#form1{border: 1px solid #67E6D4;/*display: none;*/}
+			.submit{background-color: #67E6D4;padding: 5px;display: block;margin:auto;}
+			input{display: block;padding: 5px 10px;border:1px solid #ccc;margin:auto;margin-bottom: 10px;}
+			.table-wrap{display: table;margin: auto;}
+			.radio-box{display: table-row;}
+			.radio-box label,.radio-box input{display: table-cell;text-align: right;}
+		</style>
 	</head>
 	<body>
 		<button class="j-btn btn-c">after伪元素绘制边框</button>
 		<form onsubmit="return false" id="form1">
 			<input type="text" name="uname" id="uname" value="" placeholder="用户名："/>
+			<div class="table-wrap">
+				<div class="radio-box">
+					<label for="stu">学生:</label>
+					<input type="radio" name="identity" value="学生" checked="checked" id="stu"/>
+				</div>
+				<div class="radio-box">
+					<label for="teacher">教师教师教师: </label>
+					<input type="radio" name="identity" value="教师 " id="teacher"/>
+				</div>
+			</div>
 			<button class="submit" type="button" onclick="submitForm('#form1')">提 交</button>
-		</form>
+		</form>		
 	</body>
+	<script src="js/utils.js"></script>
+	<script type="text/javascript">
+		function submitForm(){
+			var formData = formser("form1")
+			console.log(formData);
+		}	
+	</script>
 </html>
