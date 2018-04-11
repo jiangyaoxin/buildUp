@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<meta name="apple-mobile-web-app-capable" content="yes"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="css/layout.css" />
+		<style>
+			.cover{
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="ps">
+			<p>利用图片没有加载完成的时候，宽高为0。我们很容易判断图片的一个加载情况</p>
+		</div>
+		<div class="pd_main">
+			<div class="main-body">
+				
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js" ></script>
+	<script type="text/javascript" src="js/bluebird.min.js" ></script>
+	<script type="application/javascript">
+		var t_img; 
+		var isLoad = true; 
+		isImgLoad(function(){
+		    $(".cover").fadeIn();
+		});
+		function isImgLoad(callback){
+			var ahtml = '';
+			for (var i =1;i<=6;i++) {
+				ahtml += '<div class="main-body-wrap">';
+				ahtml += '	<a class="pd_commom">';
+				ahtml += '     <div class="pd_pic">';
+				ahtml += '        <img src="img/'+i+'.jpg" class="cover"/>';
+				ahtml += '     </div>';
+				ahtml += '     <div class="pd_info">';
+				ahtml += '        <div class="pd_title">新西兰原装进口牛奶 安佳Anchor全脂牛奶UHT纯牛奶250ml*24 整箱装</div>';
+				ahtml += '        <div class="pd_wrap">￥79</div>';
+				ahtml += '     </div>';
+				ahtml += '  </a>';
+				ahtml += '</div>';
+			}
+			$(".main-body").append(ahtml);
+		    $('.cover').each(function(){
+		        if(this.height === 0){
+		            isLoad = false;
+		            return false;
+		        }
+		    });
+		    if(isLoad){
+		        clearTimeout(t_img); 
+		        callback();
+		    }else{
+		        isLoad = true;
+		        t_img = setTimeout(function(){
+		            isImgLoad(callback); 
+		        },500);
+		    }
+		}
+		
+//		第二种方法
+		let mulitImg = [
+		     'http://www.daqianduan.com/wp-content/uploads/2017/03/IMG_0119.jpg',
+		     'http://www.daqianduan.com/wp-content/uploads/2017/01/1.jpg',
+		     'http://www.daqianduan.com/wp-content/uploads/2015/11/jquery.jpg',
+		     'http://www.daqianduan.com/wp-content/uploads/2015/10/maid.jpg'
+		 ];
+		 let promiseAll = [], img = [], imgTotal = mulitImg.length;
+		 for(let i = 0 ; i < imgTotal ; i++){
+		     promiseAll[i] = new Promise((resolve, reject)=>{
+		         img[i] = new Image()
+		         img[i].src = mulitImg[i]
+		         img[i].onload = function(){
+		              //第i张加载完成
+		              resolve(img[i])
+		         }
+		     })
+		 }
+		 Promise.all(promiseAll).then((img)=>{
+		     console.log("加载完毕");
+		 })
+	</script>
+</html>

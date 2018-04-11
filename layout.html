@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<meta name="apple-mobile-web-app-capable" content="yes"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="css/layout.css" />
+	</head>
+	<body>
+		<div class="pd_main">
+			<div class="main-body">
+				<div class="main-body-wrap">
+					<a class="pd_commom">
+						<div class="pd_pic">
+							<img src="img/1.jpg" />
+						</div>
+						<div class="pd_info">
+							<div class="pd_title">
+								新西兰原装进口牛奶 安佳Anchor全脂牛奶UHT纯牛奶250ml*24 整箱装
+							</div>
+							<div class="pd_wrap">￥79</div>
+						</div>
+					</a>
+				</div>
+				<div class="main-body-wrap">
+					<a class="pd_commom">
+						<div class="pd_pic">
+							<img src="img/1.jpg" />
+						</div>
+						<div class="pd_info">
+							<div class="pd_title">
+								新西兰原装进口牛奶 安佳Anchor全脂牛奶UHT纯牛奶250ml*24 整箱装
+							</div>
+							<div class="pd_wrap">￥79</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		
+		<ul class="good-list">
+			<li class="bdr-bom">
+				<a href="javascript:;">
+					<div class="skill-pic">
+						<div class="img">
+							<img src="img/a1.jpg" />
+						</div>						
+					</div>
+					<p class="g-title">阿道夫（ADOLPH）生姜防脱育发专研 防脱育发洗发水500g</p>
+					<p class="g-price"><i class="doller">￥</i>1<span class="f-s-12"></span></p>
+					<div class="skill-price">
+		    			<p class="g-price-odd">
+		    				<del>￥138</del>
+		    			</p>
+    					<div class="skill-lod">
+    			    		<span class="sale-count">200件已秒杀完</span>
+    					</div>
+    				</div>
+				</a>
+			</li>
+			<li class="bdr-bom">
+				<a href="javascript:;">
+					<div class="skill-pic">
+						<div class="img">
+							<img src="img/a2.jpg" />
+						</div>						
+					</div>
+					<p class="g-title">阿道夫（ADOLPH）生姜防脱育发专研 防脱育发洗发水500g</p>
+					<p class="g-price"><i class="doller">￥</i>1<span class="f-s-12"></span></p>
+					<div class="skill-price">
+		    			<p class="g-price-odd">
+		    				<del>￥138</del>
+		    			</p>
+    					<div class="skill-lod">
+    			    		<span class="sale-count">200件已秒杀完</span>
+    					</div>
+    				</div>
+				</a>
+			</li>
+			<li class="bdr-bom">
+				<a href="javascript:;">
+					<div class="skill-pic">
+						<div class="img">
+							<img src="img/a3.jpg" />
+						</div>						
+					</div>
+					<p class="g-title">阿道夫（ADOLPH）生姜防脱育发专研 防脱育发洗发水500g</p>
+					<p class="g-price"><i class="doller">￥</i>1<span class="f-s-12"></span></p>
+					<div class="skill-price">
+		    			<p class="g-price-odd">
+		    				<del>￥138</del>
+		    			</p>
+    					<div class="skill-lod">
+    			    		<span class="sale-count">200件已秒杀完</span>
+    					</div>
+    				</div>
+				</a>
+			</li>
+		</ul>
+		<div class="ps">
+			<p>jquery的ready只是dom的结构加载完毕，便视为加载完成。(缺点是图片没有加载完毕，宽高为0，程序出错)</p>
+			<p>js的window.onload是指dom的生成和资源的加载，比如flash、图片完全加载出来后才执行onload。(缺点就是当某一张图片很大的时候，岂不阻止了其它js的正常执行)
+</p>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js" ></script>
+	<script type="application/javascript">
+		
+		window.onload=function(){
+			console.log("所有资源加载完毕");
+			//图片加载完成显示
+			$("img").fadeIn();
+		}
+	</script>
+</html>

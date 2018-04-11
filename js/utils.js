@@ -91,6 +91,13 @@ function stopBubble(e){
 function randombetween(min, max){
 	return min + (Math.random() * (max-min +1));
 }
+//给a标签添加后缀
+function setPostfix(tags) {
+	for (var i=0;i<tags.length;i++) {
+  	tags[i].href += "?"+Math.random();
+	}
+}
+
 function isPC(){
 	if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
     return false;

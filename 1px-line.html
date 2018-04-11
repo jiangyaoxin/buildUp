@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<meta name="apple-mobile-web-app-capable" content="yes"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+	</head>
+	<style type="text/css">
+		.single-line{
+		  margin:0 auto;
+		  height: 1px;
+		  width:200px;
+		  background: #000;
+		  overflow: hidden; /*如果不加这句会有部分颜色溢出，手机上看起来会比1px粗。*/
+		  transform: scaleY(0.5);
+		  -webkit-transform: scaleY(0.5);
+		  color: #ccc;
+		}
+		p{
+			font-size: 12px;;
+		}
+		.rectangle{
+			width: 90%;
+			height: auto;
+			position: relative;
+			margin: auto;
+		}
+		.rectangle:before{
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
+			display: block;
+			border: 1px solid #ccc;
+			width: 200%;
+			height: 200%;
+			-webkit-transform: scale(.5, .5);
+		    transform: scale(.5, .5);
+		    -webkit-transform-origin: 0 0;
+		    transform-origin: 0 0;
+		  	overflow: hidden;
+		}
+		.rectangle span{
+			display: block;
+			padding: 20px;
+		}
+	</style>
+	<body>
+		<div class="wrap">
+			<h1>一、为什么出不来1px？</h1>
+			<h3>简而言之：css的1px只是一个抽象的单位，并非实际设备中的1px。</h3>
+			<h3>关于retina屏：</h3>
+			<p>我们知道现在iphone大多数型号都用上了retina屏，而retina屏的分辨率相较于普通屏幕增加了一倍，也就是说原来1个像素宽度的区域内可以塞进2个像素了。我们css写的1px是一个概念像素，在retina屏的实际设备上占了2px的位置。而对于手机屏幕整体来说，一个标注了750宽的手机（iPhone6）在css中只需要375px就能表示。</p>
+			<h3>二、如何在手机上写出1px？</h3>
+			<p>
+				网上其实有人列了非常多的方案，有用transform的、有用图片的、有用canvas的、还有用0.5px的……从操作简易性来看，用transform的方案是比较简单的，而且适配也比较容易（0.5px的方案安卓不支持）。
+			</p>
+			<p style="font-weight: 700;">原理：写一条1px的线，然后transform:scaleY(0.5)或scaleX(0.5)，就能够将retina上显示的2px缩小为实际屏幕中的1px。</p>
+			<h3>三、几种1px的样式实践方案</h3>
+			<h5>(1)单线</h5>
+			<div class="single-line"></div>
+			<h5>(2)四边形&圆角四边形</h5>
+			<div class="rectangle">
+				<span>大多数情况下，我们希望文字框的描边随着文字的字数而变化，倘若我们直接在2的例子中的子元素(class="rectangle")里添加文字，则无法实现文字按照父级元素的宽度来排列文字。比如这样：https://jsfiddle.net/xhabhyf9/5/，文字框缩小成了父级元素的50%，无法实现充满父级元素的效果。思路：给文字框加一层标签，给这层标签元素描边1px，然后给它的外层元素设置为width:200%并transform:scale(0.5)，并且用translate让外层元素由于缩放scale带来的位移“归位”</span>
+			</div>
+		</div>
+	</body>
+</html>
